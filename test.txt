@@ -1,0 +1,23 @@
+const calcular = document.getElementById('calcular');
+
+function ClassificaoIdade() {
+    const dataAtual = new Date();
+    const data = ((dataAtual.getDate())+"/"+(dataAtual.getMonth()+1)+"/"+dataAtual.getFullYear());
+    const nome = document.getElementById('nome').value;
+    const dataDN = document.getElementById('DN').value;
+    const DN_String = dataDN.split('/');
+    const anoDN = DN_String[2];
+    const mesDN = DN_String[1];
+    const diaDN = DN_String[0];
+    const DN = new Date(anoDN, mesDN-1, diaDN);
+    //const idade = dataAtual.getFullYear()-anoDN;
+    const idade = Math.abs(dataAtual.getTime()-DN.getTime()); 
+    const idadeAno = Math.trunc(Math.ceil(idade / (1000 * 60 * 60 * 24))/365);
+    //const idade = dataAtual.getFullYear() - ;
+    const resultado = document.getElementById('resultado');
+
+        resultado.textContent = `Olá ${nome}, a Data atual é ${data} e sua idade é ${idadeAno} anos!`;
+
+}
+
+calcular.addEventListener('click', ClassificaoIdade);
